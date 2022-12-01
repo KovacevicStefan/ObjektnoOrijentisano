@@ -27,6 +27,17 @@ public class Line {
 		return startPoint +"-->" +endPoint;
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Line) {
+			Line temp = (Line)obj;
+			if(startPoint.equals(temp.getStartPoint()) && endPoint.equals(temp.getEndPoint())) {
+				
+			}
+		}
+		return false;
+	}
+	
 	public Point getStartPoint() {
 		return startPoint;
 	}

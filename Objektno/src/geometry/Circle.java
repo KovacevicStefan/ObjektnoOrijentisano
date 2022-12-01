@@ -37,6 +37,24 @@ public class Circle {
 			
 			return "Center: " +center +" ,radius: " +r;
 		}
+		
+		@Override
+		public boolean equals(Object obj) {
+			if(obj instanceof Circle) {
+				Circle temp = (Circle)obj;
+				if(temp.getCenter().equals(center) && temp.getR() == r) {
+					return true;
+				}
+			}
+			return false;
+		}
+		
+		
+		private Object r() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
 		public Point getCenter() {
 			return center;
 		}
