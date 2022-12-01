@@ -22,6 +22,11 @@ public class Line {
 		this.selected = selected; 
 	}
 	
+	@Override 
+	public String toString() {
+		return startPoint +"-->" +endPoint;
+	}
+	
 	public Point getStartPoint() {
 		return startPoint;
 	}

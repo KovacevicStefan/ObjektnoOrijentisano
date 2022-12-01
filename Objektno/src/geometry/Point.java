@@ -23,6 +23,29 @@ public class Point {
 		this.selected = selected;
 	}
 	
+	public double distsance(int x, int y) {
+		int dX = this.x - x;
+		int dY = this.y - y;
+		double d = Math.sqrt(dX*dX + dY*dY);
+		return d;
+	}
+	
+	@Override 
+	public String toString() {
+		return "(" +x + "," +y +")";
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		
+		if(obj instanceof Point) {
+			Point temp = (Point) obj;
+			if(x==temp.x && y==temp.y)
+				return true;
+		}
+		return false;
+		
+	}
 	//metode
 	
 	//getteri i setteri

@@ -32,6 +32,11 @@ public class Circle {
 			this.selected = selected;
 		}
 		
+		@Override
+		public String toString() {
+			
+			return "Center: " +center +" ,radius: " +r;
+		}
 		public Point getCenter() {
 			return center;
 		}

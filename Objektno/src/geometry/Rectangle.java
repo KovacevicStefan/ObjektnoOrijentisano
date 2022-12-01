@@ -36,9 +36,16 @@ public class Rectangle {
 		this.upperLeft = ul;
 		this.width = w;
 		this.height = h;
-		boolean selected = true;
+		this.selected = true;
 	
 	}
+	
+	@Override
+	public String toString() {
+		
+		return "Upper left point: " +upperLeft +", width: " +width +", height: " +height;
+	}
+	
 	
 	public Point getUpperLeft() {
 		return upperLeft;
