@@ -4,9 +4,7 @@ public class Test {
 
 	public static void main(String[] args) {
 		
-		
 		// TOKEN - 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
-		
 		
 		Circle c = new Circle(new Point(3,5), 7);
 		System.out.println(c.circumference());
