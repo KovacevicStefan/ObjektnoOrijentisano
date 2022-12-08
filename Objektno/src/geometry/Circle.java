@@ -35,7 +35,7 @@ public class Circle {
 		@Override
 		public String toString() {
 			
-			return "Center: " +center +" ,radius: " +r;
+			return "Center: " +center +", radius: " +r;
 		}
 		
 		@Override
@@ -51,7 +51,7 @@ public class Circle {
 		
 		
 		private Object r() {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
