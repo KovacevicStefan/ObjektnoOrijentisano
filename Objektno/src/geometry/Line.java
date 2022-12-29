@@ -1,15 +1,14 @@
 package geometry;
 
-public class Line {
+public class Line extends Shape {
 	
 	private Point startPoint;
 	private Point endPoint;
-	private boolean selected;
 	
 	public Line() {
 		
 	}
-	//dasdad
+
 	public Line(Point pb, Point db) {
 		this.startPoint = pb;
 		this.endPoint = db;
@@ -38,6 +37,10 @@ public class Line {
 		return false;
 	}
 	
+	public boolean contains(int x, int y) {
+		return (startPoint.distanca(x,y) + endPoint.distanca(x, y)) - length() <= 2;
+	}
+	
 	public Point getStartPoint() {
 		return startPoint;
 	}
@@ -50,13 +53,5 @@ public class Line {
 	public void setEndPoint(Point endPoint) {
 		this.endPoint = endPoint;
 	}
-	public boolean isSelected() {
-		return selected;
-	}
-	public void setSelected(boolean selected) {
-		this.selected = selected;
-	}
-	
-	
 	
 }

@@ -1,11 +1,10 @@
 package geometry;
 
-public class Point {
+public class Point extends Shape{
 
 	//obelezja
 	private int x;
 	private int y;
-	private boolean selected;
 	private int distanca;
 	
 
@@ -23,12 +22,14 @@ public class Point {
 		this.selected = selected;
 	}
 	
-	public double distsance(int x, int y) {
-		int dX = this.x - x;
-		int dY = this.y - y;
-		double d = Math.sqrt(dX*dX + dY*dY);
+	public double distanca(int x, int y) {
+		int dx = this.x - x;
+		int dy = this.y - y;
+		double d = Math.sqrt((dx*dx)+(dy*dy));
 		return d;
 	}
+	
+	//metode
 	
 	@Override 
 	public String toString() {
@@ -46,7 +47,12 @@ public class Point {
 		return false;
 		
 	}
-	//metode
+	
+	public boolean contains(int x, int y) {
+		
+		return this.distanca(x, y) <= 2;
+		
+	}
 	
 	//getteri i setteri
 	
@@ -65,18 +71,5 @@ public class Point {
 		this.y = y;
 	}
 	
-	public boolean isSelected() {
-		return selected;
-	}
-	public void setSelected(boolean selected) {
-		this.selected = selected;
-	}
-	
-	public double distanca(int x, int y) {
-		int dx = this.x - x;
-		int dy = this.y - y;
-		double d = Math.sqrt((dx*dx)+(dy*dy));
-		return d;
-	
-	}
+
 }

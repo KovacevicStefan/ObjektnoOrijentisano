@@ -1,48 +1,46 @@
 package geometry;
 
-public class Rectangle {
+public class Rectangle extends Shape{
 
 	private Point upperLeft;
 	private int width;
 	private int height;
-	private boolean selected;
-	
-	public int circumference() {
-		
-		return 2*(width + height);
-		
-	}
-	
-	public int area() {
-		
-		return width*height;
-		
-	}
 	
 	public Rectangle() {
 		
 	}
 	
 	public Rectangle(Point ul, int w, int h) {
-		
 		this.upperLeft = ul;
 		this.width = w;
 		this.height = h;
-	
 	}
 	
 	public Rectangle(Point ul, int w, int h, boolean selected) {
-		
 		this.upperLeft = ul;
 		this.width = w;
 		this.height = h;
 		this.selected = true;
+	}
 	
+	public int circumference() {
+		return 2*(width + height);
+	}
+	
+	public int area() {
+		return width*height;
+	}
+	
+	public boolean contains(int w, int h) {
+		return upperLeft.getX() < w && upperLeft.getX() + w > w && upperLeft.getY() < h && upperLeft.getY() < h;
+	}
+	
+	public boolean contains(Point p) {
+		return this.contains(p.getX(), p.getY());
 	}
 	
 	@Override
 	public String toString() {
-		
 		return "Upper left point: " +upperLeft +", width: " +width +", height: " +height;
 	}
 	
@@ -76,13 +74,6 @@ public class Rectangle {
 	public void setHeight(int height) {
 		this.height = height;
 	}
-	public boolean isSelected() {
-		return selected;
-	}
-	public void setSelected(boolean selected) {
-		this.selected = selected;
-	}
-	
 	
 	
 }
