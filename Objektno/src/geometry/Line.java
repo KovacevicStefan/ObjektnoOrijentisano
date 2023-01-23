@@ -1,4 +1,5 @@
 package geometry;
+import java.awt.Graphics;
 
 public class Line extends Shape {
 	
@@ -47,6 +48,14 @@ public class Line extends Shape {
 	
 	public boolean contains(int x, int y) {
 		return (startPoint.distance(x,y) + endPoint.distance(x, y)) - length() <= 2;
+	}
+	
+	public void draw(Graphics g) {
+		g.drawLine(this.getStartPoint().getX(), this.getStartPoint().getY(), this.getEndPoint().getX(), this.getEndPoint().getY());
+		if(selected) {
+			g.drawRect(getStartPoint().getX() - 3, getStartPoint().getY() - 3, 6, 6);
+			g.drawRect(getEndPoint().getX() - 3, getEndPoint().getY() - 3, 6, 6);
+		}
 	}
 	
 	public Point getStartPoint() {

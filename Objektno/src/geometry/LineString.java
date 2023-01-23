@@ -1,4 +1,5 @@
 package geometry;
+import java.awt.Graphics;
 
 public class LineString {
 
@@ -16,8 +17,8 @@ public class LineString {
 				return true;
 			}else {
 			Line last = this.segments[lastIndex];
-				if(last.getStartPoint().equals(l.getStartPoint()) || last.getStartPoint().equals(l.getEndPoint()) || last.getEndPoint().equals(l.getStartPoint())
-					|| last.getEndPoint().equals(l.getEndPoint())) {
+				if(last.getStartPoint().equals(l.getStartPoint()) || last.getStartPoint().equals(l.getEndPoint()) 
+				|| last.getEndPoint().equals(l.getStartPoint()) || last.getEndPoint().equals(l.getEndPoint())) {
 					segments[++lastIndex] = l;
 					return true;
 				}else {
@@ -47,6 +48,14 @@ public class LineString {
 			l = l + this.segments[i].length();
 		}
 		return l;
+	}
+	
+	public void draw(Graphics g) {
+		for(int i = 0; i < segments.length; i++) {
+			if(segments[i] != null) {
+				segments[i].draw(g);
+			}
+		}
 	}
 	
 	public Line[] getSegment() {

@@ -1,4 +1,5 @@
 package geometry;
+import java.awt.Graphics;
 
 public class Point extends Shape{
 
@@ -50,6 +51,13 @@ public class Point extends Shape{
 		
 		return this.distance(x, y) <= 2;
 		
+	}
+	
+	public void draw(Graphics g) {
+		g.drawLine(this.x, this.y, this.x, this.y);
+		if(selected) {
+			g.drawRect(this.x - 3, this.y - 3, 6, 6);
+		}
 	}
 	
 	//getteri i setteri

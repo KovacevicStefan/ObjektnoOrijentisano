@@ -1,5 +1,7 @@
 package geometry;
 
+import java.awt.Graphics;
+
 public class Donut extends Circle{
 
 	private int innerR;
@@ -16,6 +18,18 @@ public class Donut extends Circle{
 	public Donut(Point center, int r, int iR, boolean selected) {
 		super(center, r);
 		this.innerR = iR;	
+	}
+	
+	public void draw(Graphics g) {
+		super.draw(g);
+		g.drawOval(this.getCenter().getX() - this.innerR, this.getCenter().getY() - this.innerR, this.innerR*2, this.innerR*2);
+		if(selected) {
+			g.drawRect(getCenter().getX() - innerR - 3, getCenter().getY() - 3, 6, 6);
+			g.drawRect(getCenter().getX() + innerR - 3, getCenter().getY() - 3, 6, 6);
+			g.drawRect(getCenter().getX() - 3, getCenter().getY() - innerR - 3, 6, 6);
+			g.drawRect(getCenter().getX() - 3, getCenter().getY() + innerR - 3, 6, 6);
+			
+		}
 	}
 	
 	@Override

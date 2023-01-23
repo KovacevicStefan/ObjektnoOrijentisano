@@ -1,5 +1,7 @@
 package geometry;
 
+import java.awt.Graphics;
+
 public class Circle extends Shape{
 	
 		private Point center;
@@ -37,6 +39,16 @@ public class Circle extends Shape{
 		
 		public boolean contains(Point p) {
 			return center.distance(p.getX(),p.getY()) <= r;
+		}
+		
+		public void draw(Graphics g) {
+			g.drawOval(this.getCenter().getX() - this.r, this.getCenter().getY(), this.r*2, this.r*2);
+			if(selected) {
+				g.drawRect(center.getX() - r - 3, center.getY() - 3, 6, 6);
+				g.drawRect(center.getX() + r - 3, center.getY() - 3, 6, 6);
+				g.drawRect(center.getX() - 3, center.getY() - r - 3, 6, 6);
+				g.drawRect(center.getX() - 3, center.getY() + r -3, 6, 6);
+			}
 		}
 		
 		@Override

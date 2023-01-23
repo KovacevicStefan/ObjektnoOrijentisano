@@ -6,4 +6,5 @@
  *
  */
 module Objektno {
+	requires java.desktop;
 }

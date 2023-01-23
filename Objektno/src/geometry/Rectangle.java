@@ -1,5 +1,7 @@
 package geometry;
 
+import java.awt.Graphics;
+
 public class Rectangle extends Shape{
 
 	private Point upperLeft;
@@ -37,6 +39,16 @@ public class Rectangle extends Shape{
 	
 	public boolean contains(Point p) {
 		return this.contains(p.getX(), p.getY());
+	}
+	
+	public void draw(Graphics g) {
+		g.drawRect(this.getUpperLeft().getX(), this.getUpperLeft().getY(), this.width, this.height);
+		if(selected) {
+			g.drawRect(upperLeft.getX() - 3, upperLeft.getY() - 3, 6, 6);
+			g.drawRect(upperLeft.getX() + width - 3, upperLeft.getY() - 3, 6, 6);
+			g.drawRect(upperLeft.getX() - 3, upperLeft.getY() + height - 3, 6, 6);
+			g.drawRect(upperLeft.getX() + width - 3, upperLeft.getY() + height - 3, 6, 6);
+		}
 	}
 	
 	@Override
