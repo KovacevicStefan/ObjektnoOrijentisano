@@ -32,11 +32,11 @@ public class Circle extends Shape{
 		}
 		
 		public boolean contains(int x, int y) {
-			return center.distanca(x, y) <= r;
+			return center.distance(x, y) <= r;
 		}
 		
 		public boolean contains(Point p) {
-			return center.distanca(p.getX(),p.getY()) <= r;
+			return center.distance(p.getX(),p.getY()) <= r;
 		}
 		
 		@Override
@@ -56,12 +56,6 @@ public class Circle extends Shape{
 			return false;
 		}
 		
-		
-		private Object r() {
-			
-			return null;
-		}
-
 		public Point getCenter() {
 			return center;
 		}

@@ -37,8 +37,16 @@ public class Line extends Shape {
 		return false;
 	}
 	
+	public double length() {
+		int dx = this.startPoint.getX() - this.endPoint.getX();
+		int dy = this.endPoint.getY() - this.endPoint.getY();
+		double length = Math.sqrt(dx * dx + dy * dy);
+		return length;
+	
+	}
+	
 	public boolean contains(int x, int y) {
-		return (startPoint.distanca(x,y) + endPoint.distanca(x, y)) - length() <= 2;
+		return (startPoint.distance(x,y) + endPoint.distance(x, y)) - length() <= 2;
 	}
 	
 	public Point getStartPoint() {

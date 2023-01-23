@@ -5,8 +5,6 @@ public class Point extends Shape{
 	//obelezja
 	private int x;
 	private int y;
-	private int distanca;
-	
 
 	
 	//konstruktori
@@ -22,7 +20,7 @@ public class Point extends Shape{
 		this.selected = selected;
 	}
 	
-	public double distanca(int x, int y) {
+	public double distance(int x, int y) {
 		int dx = this.x - x;
 		int dy = this.y - y;
 		double d = Math.sqrt((dx*dx)+(dy*dy));
@@ -50,7 +48,7 @@ public class Point extends Shape{
 	
 	public boolean contains(int x, int y) {
 		
-		return this.distanca(x, y) <= 2;
+		return this.distance(x, y) <= 2;
 		
 	}
 	
