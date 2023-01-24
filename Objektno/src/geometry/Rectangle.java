@@ -37,10 +37,6 @@ public class Rectangle extends Shape{
 		return upperLeft.getX() < w && upperLeft.getX() + w > w && upperLeft.getY() < h && upperLeft.getY() < h;
 	}
 	
-	public boolean contains(Point p) {
-		return this.contains(p.getX(), p.getY());
-	}
-	
 	public void draw(Graphics g) {
 		g.drawRect(this.getUpperLeft().getX(), this.getUpperLeft().getY(), this.width, this.height);
 		if(selected) {

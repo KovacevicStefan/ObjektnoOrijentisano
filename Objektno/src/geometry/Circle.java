@@ -7,24 +7,13 @@ public class Circle extends Shape{
 		private Point center;
 		private int r;
 		
-		public double circumference() {
-			
-			return 2 * r * Math.PI;
-			
-		}
-		
-		public double area() {
-			return r * r * Math.PI;
-		}
-		
 		public Circle() {
 			
 		}
 		
 		public Circle (Point c, int r) {
 			this.center = c;
-			this.r = r;
-			
+			this.r = r;			
 		}
 		
 		public Circle (Point c, int r, boolean selected) {
@@ -33,12 +22,17 @@ public class Circle extends Shape{
 			this.selected = selected;
 		}
 		
-		public boolean contains(int x, int y) {
-			return center.distance(x, y) <= r;
+		public double circumference() {
+			return 2 * r * Math.PI;	
 		}
 		
-		public boolean contains(Point p) {
-			return center.distance(p.getX(),p.getY()) <= r;
+		public double area() {
+			return r * r * Math.PI;
+		}
+		
+		
+		public boolean contains(int x, int y) {
+			return center.distance(x, y) <= r;
 		}
 		
 		public void draw(Graphics g) {
@@ -53,7 +47,6 @@ public class Circle extends Shape{
 		
 		@Override
 		public String toString() {
-			
 			return "Center: " +center +", radius: " +r;
 		}
 		

@@ -1,7 +1,7 @@
 package geometry;
 import java.awt.Graphics;
 
-public class Line extends Shape {
+public class Line extends Shape implements Movable{
 	
 	private Point startPoint;
 	private Point endPoint;
@@ -37,6 +37,22 @@ public class Line extends Shape {
 		}
 		return false;
 	}
+
+	@Override
+	public void moveOn(int x, int y) {
+		int midX = (startPoint.getX() + endPoint.getX())/2;
+		int midY = (startPoint.getY() + endPoint.getY())/2;
+		int dx = x - midX;
+		int dy = y - midY;
+		this.startPoint.moveBy(dx, dy);
+		this.endPoint.moveBy(dx, dy);
+	}
+
+	@Override
+	public void moveBy(int dx, int dy) {
+		this.startPoint.moveOn(this.startPoint.getX() + dx, this.startPoint.getY() + dy);
+		this.endPoint.moveOn(this.endPoint.getX() + dx, this.endPoint.getY() + dy);
+	}	
 	
 	public double length() {
 		int dx = this.startPoint.getX() - this.endPoint.getX();
@@ -70,5 +86,6 @@ public class Line extends Shape {
 	public void setEndPoint(Point endPoint) {
 		this.endPoint = endPoint;
 	}
+
 	
 }

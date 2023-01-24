@@ -34,12 +34,7 @@ public class Donut extends Circle{
 	
 	@Override
 	public boolean contains(int w, int h) {
-		return super.contains(w, h) && super.getCenter().distance(w, h)>=innerR;
-	}
-	
-	@Override
-	public boolean contains(Point p) {
-		return this.contains(p.getX(), p.getY());
+		return super.contains(w, h) && super.getCenter().distance(w, h) >= innerR;
 	}
 	
 	@Override

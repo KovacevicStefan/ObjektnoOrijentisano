@@ -52,10 +52,19 @@ public class LineString {
 	
 	public void draw(Graphics g) {
 		for(int i = 0; i < segments.length; i++) {
-			if(segments[i] != null) {
-				segments[i].draw(g);
+			if(segments[i] != null)
+			segments[i].draw(g);
+			
+		}
+	}
+	
+	public boolean containt(int x, int y) {
+		for(int i = 0; i < segments.length; i++) {
+			if(segments[i] != null && segments[i].contains(x, y)) {
+				return true;
 			}
 		}
+		return false;
 	}
 	
 	public Line[] getSegment() {

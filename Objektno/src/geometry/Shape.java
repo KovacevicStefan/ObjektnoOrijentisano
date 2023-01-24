@@ -1,6 +1,6 @@
 package geometry;
 
-public abstract class Shape {
+public abstract class Shape{
 		
 	protected boolean selected;
 	

@@ -1,7 +1,7 @@
 package geometry;
 import java.awt.Graphics;
 
-public class Point extends Shape{
+public class Point extends Shape implements Movable{
 
 	//obelezja
 	private int x;
@@ -47,6 +47,18 @@ public class Point extends Shape{
 		
 	}
 	
+	@Override
+	public void moveOn(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+
+	@Override
+	public void moveBy(int dx, int dy) {
+		this.x = this.x + dx;
+		this.y = this.y + dy;
+	}
+	
 	public boolean contains(int x, int y) {
 		
 		return this.distance(x, y) <= 2;
@@ -76,6 +88,8 @@ public class Point extends Shape{
 	public void setY(int y) {
 		this.y = y;
 	}
+
+	
 	
 
 }
