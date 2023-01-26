@@ -1,7 +1,7 @@
 package geometry;
 import java.awt.Graphics;
 
-public class LineString {
+public class LineString{
 
 	private Line[] segments = new Line[10];
 	private int lastIndex = -1;

@@ -1,7 +1,7 @@
 package geometry;
 import java.awt.Graphics;
 
-public class Point extends Shape implements Movable{
+public class Point extends Shape implements Moveable{
 
 	//obelezja
 	private int x;
@@ -66,7 +66,8 @@ public class Point extends Shape implements Movable{
 	}
 	
 	public void draw(Graphics g) {
-		g.drawLine(this.x, this.y, this.x, this.y);
+		g.drawLine(this.x - 1, this.y, this.x + 1, this.y);
+		g.drawLine(this.x, this.y - 1, this.x, this.y + 1);
 		if(selected) {
 			g.drawRect(this.x - 3, this.y - 3, 6, 6);
 		}

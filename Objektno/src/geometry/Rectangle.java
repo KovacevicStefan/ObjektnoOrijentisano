@@ -63,7 +63,17 @@ public class Rectangle extends Shape{
 		return false;
 	}
 	
-	
+	@Override
+	public void moveOn(int x, int y) {
+		upperLeft.moveOn(x, y);
+		
+	}
+
+	@Override
+	public void moveBy(int dx, int dy) {
+		upperLeft.moveBy(dx, dy);
+	}
+
 	public Point getUpperLeft() {
 		return upperLeft;
 	}
@@ -82,6 +92,8 @@ public class Rectangle extends Shape{
 	public void setHeight(int height) {
 		this.height = height;
 	}
+
+	
 	
 	
 }

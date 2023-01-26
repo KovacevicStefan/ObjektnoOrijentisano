@@ -36,13 +36,7 @@ public class Circle extends Shape{
 		}
 		
 		public void draw(Graphics g) {
-			g.drawOval(this.getCenter().getX() - this.r, this.getCenter().getY(), this.r*2, this.r*2);
-			if(selected) {
-				g.drawRect(center.getX() - r - 3, center.getY() - 3, 6, 6);
-				g.drawRect(center.getX() + r - 3, center.getY() - 3, 6, 6);
-				g.drawRect(center.getX() - 3, center.getY() - r - 3, 6, 6);
-				g.drawRect(center.getX() - 3, center.getY() + r -3, 6, 6);
-			}
+			g.drawOval(center.getX()-r, center.getY()-r, r*2, r*2);
 		}
 		
 		@Override
@@ -61,6 +55,16 @@ public class Circle extends Shape{
 			return false;
 		}
 		
+		@Override
+		public void moveOn(int x, int y) {
+			center.moveOn(x, y);
+		}
+
+		@Override
+		public void moveBy(int dx, int dy) {
+			center.moveBy(dx, dy);
+		}	
+		
 		public Point getCenter() {
 			return center;
 		}
@@ -70,8 +74,12 @@ public class Circle extends Shape{
 		public int getR() {
 			return r;
 		}
-		public void setR(int r) {
-			this.r = r;
-		}	
+		public void setR(int r) throws Exception {
+			if(r >= 0) {
+				this.r = r;
+			}else {
+				throw new Exception("Vrednost poluprecnika ne moze biti negativan broj.");
+			}
+		}
 	
 }
