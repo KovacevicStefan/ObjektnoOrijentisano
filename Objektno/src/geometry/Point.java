@@ -10,6 +10,10 @@ public class Point extends Shape implements Moveable{
 	
 	//konstruktori
 	
+	public Point() {
+		
+	}
+	
 	public Point(int x, int y) {
 		this.x = x;
 		this.y = y;
