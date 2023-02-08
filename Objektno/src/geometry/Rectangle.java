@@ -22,7 +22,7 @@ public class Rectangle extends Shape{
 		this.upperLeft = ul;
 		this.width = w;
 		this.height = h;
-		this.selected = true;
+		this.selected = selected;
 	}
 	
 	public int circumference() {
@@ -33,8 +33,17 @@ public class Rectangle extends Shape{
 		return width*height;
 	}
 	
-	public boolean contains(int w, int h) {
-		return upperLeft.getX() < w && upperLeft.getX() + w > w && upperLeft.getY() < h && upperLeft.getY() < h;
+	public boolean contains(int x, int y) {
+		boolean containsX = false;
+		if(x >= upperLeft.getX() && x <= (upperLeft.getX() + width)) {
+			containsX = true;
+		}
+		
+		boolean containsY = false;
+		if(y >= upperLeft.getY() && y <= (upperLeft.getY() + height)) {
+			containsY = true;
+		}
+		return containsX && containsY;
 	}
 	
 	public void draw(Graphics g) {
@@ -72,6 +81,15 @@ public class Rectangle extends Shape{
 	@Override
 	public void moveBy(int dx, int dy) {
 		upperLeft.moveBy(dx, dy);
+	}
+	
+	@Override
+	public int compareTo(Object o) {
+		if(o instanceof Rectangle) {
+			Rectangle temp = (Rectangle)o;
+			return this.area() - temp.area();
+		}
+		return 0;
 	}
 
 	public Point getUpperLeft() {

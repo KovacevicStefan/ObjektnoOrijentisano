@@ -30,13 +30,19 @@ public class Circle extends Shape{
 			return r * r * Math.PI;
 		}
 		
-		
 		public boolean contains(int x, int y) {
 			return center.distance(x, y) <= r;
 		}
 		
 		public void draw(Graphics g) {
 			g.drawOval(center.getX()-r, center.getY()-r, r*2, r*2);
+			if(selected) {
+				g.drawRect(center.getX() - r - 3, center.getY() - 3, 6, 6);
+				g.drawRect(center.getX() + r - 3, center.getY() - 3, 6, 6);
+				g.drawRect(center.getX() - 3, center.getY() - r - 3, 6, 6);
+				g.drawRect(center.getX() - 3, center.getY() + r - 3, 6, 6);
+			}
+		
 		}
 		
 		@Override
@@ -64,6 +70,15 @@ public class Circle extends Shape{
 		public void moveBy(int dx, int dy) {
 			center.moveBy(dx, dy);
 		}	
+		
+		@Override
+		public int compareTo(Object o) {
+			if(o instanceof Circle) {
+				Circle temp = (Circle)o;
+				return ((int)(this.area() - temp.area()));
+			}
+			return 0;
+		}
 		
 		public Point getCenter() {
 			return center;

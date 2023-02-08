@@ -22,15 +22,14 @@ import java.awt.event.ActionEvent;
 public class DlgCircle extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField radius;
 	private boolean commited;
-	private Circle circle = new Circle();
-	private JTextField textField_2;
 	
 
 	public DlgCircle() {
-		setBounds(100, 100, 450, 280);
+		setBounds(100, 100, 406, 236);
+		setModal(true);
+		setTitle("Unos dimenzija");
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -50,60 +49,23 @@ public class DlgCircle extends JDialog {
 			contentPanel.add(lblCircle, gbc_lblCircle);
 		}
 		{
-			JLabel x = new JLabel("Center X (px):");
-			GridBagConstraints gbc_x = new GridBagConstraints();
-			gbc_x.anchor = GridBagConstraints.EAST;
-			gbc_x.insets = new Insets(0, 0, 5, 5);
-			gbc_x.gridx = 1;
-			gbc_x.gridy = 2;
-			contentPanel.add(x, gbc_x);
-		}
-		{
-			textField = new JTextField();
-			GridBagConstraints gbc_textField = new GridBagConstraints();
-			gbc_textField.insets = new Insets(0, 0, 5, 0);
-			gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-			gbc_textField.gridx = 2;
-			gbc_textField.gridy = 2;
-			contentPanel.add(textField, gbc_textField);
-			textField.setColumns(10);
-		}
-		{
-			JLabel y = new JLabel("Center Y (px):");
-			GridBagConstraints gbc_y = new GridBagConstraints();
-			gbc_y.anchor = GridBagConstraints.EAST;
-			gbc_y.insets = new Insets(0, 0, 5, 5);
-			gbc_y.gridx = 1;
-			gbc_y.gridy = 3;
-			contentPanel.add(y, gbc_y);
-		}
-		{
-			textField_1 = new JTextField();
-			textField_1.setColumns(10);
-			GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-			gbc_textField_1.insets = new Insets(0, 0, 5, 0);
-			gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
-			gbc_textField_1.gridx = 2;
-			gbc_textField_1.gridy = 3;
-			contentPanel.add(textField_1, gbc_textField_1);
-		}
-		{
 			JLabel radius = new JLabel("Radius (px):");
 			GridBagConstraints gbc_radius = new GridBagConstraints();
 			gbc_radius.anchor = GridBagConstraints.EAST;
-			gbc_radius.insets = new Insets(0, 0, 0, 5);
+			gbc_radius.insets = new Insets(0, 0, 5, 5);
 			gbc_radius.gridx = 1;
-			gbc_radius.gridy = 4;
+			gbc_radius.gridy = 1;
 			contentPanel.add(radius, gbc_radius);
 		}
 		{
-			textField_2 = new JTextField();
-			textField_2.setColumns(10);
-			GridBagConstraints gbc_textField_2 = new GridBagConstraints();
-			gbc_textField_2.fill = GridBagConstraints.HORIZONTAL;
-			gbc_textField_2.gridx = 2;
-			gbc_textField_2.gridy = 4;
-			contentPanel.add(textField_2, gbc_textField_2);
+			radius = new JTextField();
+			radius.setColumns(10);
+			GridBagConstraints gbc_radius = new GridBagConstraints();
+			gbc_radius.insets = new Insets(0, 0, 5, 0);
+			gbc_radius.fill = GridBagConstraints.HORIZONTAL;
+			gbc_radius.gridx = 2;
+			gbc_radius.gridy = 1;
+			contentPanel.add(radius, gbc_radius);
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -134,17 +96,12 @@ public class DlgCircle extends JDialog {
 			}
 		}
 	}
+	
+	
 
-	public Circle getCircle() {
-		return circle;
+	public JTextField getRadius() {
+		return radius;
 	}
-
-
-
-	public void setCircle(Circle circle) {
-		this.circle = circle;
-	}
-
 
 
 	public boolean isCommited() {

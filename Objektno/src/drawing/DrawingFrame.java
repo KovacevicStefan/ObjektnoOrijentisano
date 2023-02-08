@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
@@ -26,13 +27,18 @@ import geometry.Rectangle;
 import geometry.Shape;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class DrawingFrame extends JFrame {
+public class DrawingFrame extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
 	
-	private DrawingPanel panel = new DrawingPanel(this);
+	private DrawingPanel panel = new DrawingPanel();
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private ArrayList<Shape> slctd = new ArrayList<Shape>();
+	private JLabel lbl;
 	private JToggleButton select;
 	private JToggleButton modify;
 	private JToggleButton erase;
@@ -41,10 +47,32 @@ public class DrawingFrame extends JFrame {
 	private JToggleButton rectangle;
 	private JToggleButton circle;
 	private JToggleButton donut;
+	private DlgRectangle dlgRectangle;
+	private DlgCircle dlgCircle;
+	private DlgDonut dlgDonut;
+	private Point startPoint;
+	private boolean selected;
+	private int brojac = 0;
+	private MouseListener ml = new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			if(point.isSelected()) {
+				point(e);	
+			}else if(line.isSelected()) {
+				line(e);	
+			}else if(rectangle.isSelected()) {
+				rectangle(e);	
+			}else if(circle.isSelected()) {
+				circle(e);
+			}else if(donut.isSelected()) {
+				donut(e);
+			}else if(select.isSelected()) {
+				selected(e);
+			}
+		}
+	};
 
-	
 	public DrawingFrame() {
-		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 400);
@@ -57,6 +85,7 @@ public class DrawingFrame extends JFrame {
 		toolBar.setBounds(10, 234, 87, 16);
 		contentPane.add(toolBar, BorderLayout.SOUTH);
 		contentPane.add(panel, BorderLayout.CENTER);
+		panel.addMouseListener(ml);
 		
 		select = new JToggleButton("Select");
 		buttonGroup.add(select);
@@ -67,11 +96,12 @@ public class DrawingFrame extends JFrame {
 		toolBar.add(modify);
 		
 		erase = new JToggleButton("Erase");
+		erase.addActionListener(this);
 		buttonGroup.add(erase);
 		toolBar.add(erase);
 		
-		JLabel lblNewLabel = new JLabel("                                                           ");
-		toolBar.add(lblNewLabel);
+		lbl = new JLabel("                                                           ");
+		toolBar.add(lbl);
 		
 		point = new JToggleButton("Point");
 		buttonGroup.add(point);
@@ -95,80 +125,151 @@ public class DrawingFrame extends JFrame {
 		
 	}
 	
-	protected void delete() {
-		Shape selected = panel.getSelected();
-		if(selected != null)
-			panel.getShapes().remove(selected);
-		panel.repaint();
-	}
-	
-	protected void modify() {
-		Shape selected = panel.getSelected();
-		if(selected != null) {
-			if(selected instanceof Point) {
-			Point point = (Point) selected;
-			DlgPoint dlg = new DlgPoint();
-			dlg.setPoint(point);
-			dlg.setModal(true);
-			dlg.setVisible(true);
-		}else if(selected instanceof Line) {
-			Line line = (Line) selected;
-			DlgLine dlg = new DlgLine();
-			dlg.setLine(line);
-			dlg.setModal(true);
-			dlg.setVisible(true);
-		}else if(selected instanceof Rectangle) {
-			Rectangle rectangle = (Rectangle) selected;
-			DlgRectangle dlg = new DlgRectangle();
-			dlg.setRectangle(rectangle);
-			dlg.setModal(true);
-			dlg.setVisible(true);
-		}else if(selected instanceof Circle) {
-			Circle circle = (Circle) selected;
-			DlgCircle dlg = new DlgCircle();
-			dlg.setCircle(circle);
-			dlg.setModal(true);
-			dlg.setVisible(true);
-		}else if(selected instanceof Donut) {
-			Donut donut = new Donut();
-			DlgDonut dlg = new DlgDonut();
-			dlg.setDonut(donut);
-			dlg.setModal(true);
-			dlg.setVisible(true);
+	protected void selected(MouseEvent e) {
+		for(Shape s : panel.getShapes()){
+			if(s.contains(e.getX(),e.getY()))
+			{
+				if(s instanceof Point){
+					if(!s.isSelected()) {
+						s.setSelected(true);
+						slctd.add(s);
+						repaint();
+					}else {
+						s.setSelected(false);
+						slctd.remove(s);
+						repaint();
+					}
+				}else if(s instanceof Line) {
+					if(!s.isSelected()) {
+						s.setSelected(true);
+						slctd.add(s);
+						repaint();
+					}else {
+						s.setSelected(false);
+						slctd.remove(s);
+						repaint();
+					}
+				}else if(s instanceof Rectangle) {
+					if(!s.isSelected()) {
+						s.setSelected(true);
+						slctd.add(s);
+						repaint();
+					}else {
+						s.setSelected(false);
+						slctd.remove(s);
+						repaint();
+					}
+				}else if(s instanceof Circle) {
+					if(!s.isSelected()) {
+						s.setSelected(true);
+						slctd.add(s);
+						repaint();
+					}else {
+						s.setSelected(false);
+						slctd.remove(s);
+						repaint();
+					}
+				}else if(s instanceof Donut) {
+					if(!s.isSelected()) {
+						s.setSelected(true);
+						slctd.add(s);
+						repaint();
+					}else {
+						s.setSelected(false);
+						slctd.remove(s);
+						repaint();
+					}
+				}
+			}
 		}
 	}
-		panel.repaint();
-	}
-	
 
-	
-	
-	public JToggleButton getSelect() {
-		return select;
-	}
-	public JToggleButton getModify() {
-		return modify;
-	}
-	public JToggleButton getErase() {
-		return erase;
-	}
-	public JToggleButton getPoint() {
-		return point;
-	}
-	public JToggleButton getLine() {
-		return line;
-	}
-	public JToggleButton getRectangle() {
-		return rectangle;
-	}
-	public JToggleButton getCircle() {
-		return circle;
-	}
-	public JToggleButton getDonut() {
-		return donut;
+	protected void point(MouseEvent e) {
+		Point p = new Point(e.getX(),e.getY(),selected);
+		panel.getShapes().add(p);
+		repaint();
 	}
 	
+	protected void line(MouseEvent e) {
+		brojac++;
+		if(brojac < 2) {
+			startPoint = new Point(e.getX(),e.getY());
+			panel.getShapes().add(startPoint);
+			repaint();
+		}else {
+			Line l1 = new Line(startPoint,new Point(e.getX(),e.getY()),selected);
+			panel.getShapes().remove(startPoint);
+			panel.getShapes().add(l1);
+			repaint();
+			brojac = 0;
+		}
+	}
 	
+	protected void rectangle(MouseEvent e) {
+		Point upperLeft = new Point(e.getX(),e.getY());
+		panel.getShapes().add(upperLeft);
+		repaint();
+		dlgRectangle = new DlgRectangle();
+		dlgRectangle.setVisible(true);
+		
+		if(dlgRectangle.isCommited()) {
+			int w = Integer.parseInt(dlgRectangle.getWidthField().getText());
+			int h = Integer.parseInt(dlgRectangle.getHeightField().getText());
+			Rectangle r = new Rectangle(upperLeft,w,h,selected);
+			panel.getShapes().remove(upperLeft);
+			panel.getShapes().add(r);
+			repaint();	
+		}else {
+			panel.getShapes().remove(upperLeft);
+			repaint();
+		}
+	}
+	
+	protected void circle(MouseEvent e) {
+		Point center = new Point(e.getX(),e.getY());
+		panel.getShapes().add(center);
+		repaint();
+		dlgCircle = new DlgCircle();
+		dlgCircle.setVisible(true);
+		
+		if(dlgCircle.isCommited()) {
+			int r = Integer.parseInt(dlgCircle.getRadius().getText());
+			Circle c = new Circle(center, r, selected);
+			panel.getShapes().remove(center);
+			panel.getShapes().add(c);
+			repaint();
+		}
+	}
+	
+	protected void donut(MouseEvent e) {
+		Point center = new Point(e.getX(),e.getY());
+		panel.getShapes().add(center);
+		repaint();
+		dlgDonut = new DlgDonut();
+		dlgDonut.setVisible(true);
+		
+		if(dlgDonut.isCommited()) {
+			int outerR = Integer.parseInt(dlgDonut.getOutR().getText());
+			int innerR = Integer.parseInt(dlgDonut.getInR().getText());
+			Donut d = new Donut(center,outerR,innerR,selected);
+			panel.getShapes().remove(center);
+			panel.getShapes().add(d);
+			repaint();
+		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(erase.isSelected()) {
+			if(JOptionPane.showConfirmDialog(null, "Are you really want to erase the selected object(s)?", "Erase",
+					JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+					panel.getShapes().removeAll(slctd);
+					repaint();	
+			}
+		}else if(modify.isSelected()) {
+			
+		}
+	}
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -182,5 +283,6 @@ public class DrawingFrame extends JFrame {
 			}
 		});
 	}
+
 	
 }

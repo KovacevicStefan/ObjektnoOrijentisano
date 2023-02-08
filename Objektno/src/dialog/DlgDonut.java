@@ -22,16 +22,15 @@ import java.awt.event.ActionEvent;
 public class DlgDonut extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField outR;
+	private JTextField inR;
 	private boolean commited;
-	private Donut donut = new Donut();
-	private JTextField textField_2;
-	private JTextField textField_3;
 	
 
 	public DlgDonut() {
 		setBounds(100, 100, 450, 280);
+		setModal(true);
+		setTitle("Unos dimenzija");
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -51,79 +50,42 @@ public class DlgDonut extends JDialog {
 			contentPanel.add(lblDonut, gbc_lblDonut);
 		}
 		{
-			JLabel x = new JLabel("Center X (px):");
-			GridBagConstraints gbc_x = new GridBagConstraints();
-			gbc_x.anchor = GridBagConstraints.EAST;
-			gbc_x.insets = new Insets(0, 0, 5, 5);
-			gbc_x.gridx = 1;
-			gbc_x.gridy = 2;
-			contentPanel.add(x, gbc_x);
-		}
-		{
-			textField = new JTextField();
-			GridBagConstraints gbc_textField = new GridBagConstraints();
-			gbc_textField.insets = new Insets(0, 0, 5, 0);
-			gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-			gbc_textField.gridx = 2;
-			gbc_textField.gridy = 2;
-			contentPanel.add(textField, gbc_textField);
-			textField.setColumns(10);
-		}
-		{
-			JLabel y = new JLabel("Center Y (px):");
-			GridBagConstraints gbc_y = new GridBagConstraints();
-			gbc_y.anchor = GridBagConstraints.EAST;
-			gbc_y.insets = new Insets(0, 0, 5, 5);
-			gbc_y.gridx = 1;
-			gbc_y.gridy = 3;
-			contentPanel.add(y, gbc_y);
-		}
-		{
-			textField_1 = new JTextField();
-			textField_1.setColumns(10);
-			GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-			gbc_textField_1.insets = new Insets(0, 0, 5, 0);
-			gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
-			gbc_textField_1.gridx = 2;
-			gbc_textField_1.gridy = 3;
-			contentPanel.add(textField_1, gbc_textField_1);
-		}
-		{
 			JLabel radius = new JLabel("Outer radius (px):");
 			GridBagConstraints gbc_radius = new GridBagConstraints();
 			gbc_radius.anchor = GridBagConstraints.EAST;
 			gbc_radius.insets = new Insets(0, 0, 5, 5);
 			gbc_radius.gridx = 1;
-			gbc_radius.gridy = 4;
+			gbc_radius.gridy = 2;
 			contentPanel.add(radius, gbc_radius);
 		}
 		{
-			textField_2 = new JTextField();
-			textField_2.setColumns(10);
-			GridBagConstraints gbc_textField_2 = new GridBagConstraints();
-			gbc_textField_2.insets = new Insets(0, 0, 5, 0);
-			gbc_textField_2.fill = GridBagConstraints.HORIZONTAL;
-			gbc_textField_2.gridx = 2;
-			gbc_textField_2.gridy = 4;
-			contentPanel.add(textField_2, gbc_textField_2);
+			outR = new JTextField();
+			GridBagConstraints gbc_outR = new GridBagConstraints();
+			gbc_outR.insets = new Insets(0, 0, 5, 0);
+			gbc_outR.fill = GridBagConstraints.HORIZONTAL;
+			gbc_outR.gridx = 2;
+			gbc_outR.gridy = 2;
+			contentPanel.add(outR, gbc_outR);
+			outR.setColumns(10);
 		}
 		{
 			JLabel innerR = new JLabel("Inner Radius (px):");
 			GridBagConstraints gbc_innerR = new GridBagConstraints();
 			gbc_innerR.anchor = GridBagConstraints.EAST;
-			gbc_innerR.insets = new Insets(0, 0, 0, 5);
+			gbc_innerR.insets = new Insets(0, 0, 5, 5);
 			gbc_innerR.gridx = 1;
-			gbc_innerR.gridy = 5;
+			gbc_innerR.gridy = 3;
 			contentPanel.add(innerR, gbc_innerR);
 		}
 		{
-			textField_3 = new JTextField();
-			textField_3.setColumns(10);
-			GridBagConstraints gbc_textField_3 = new GridBagConstraints();
-			gbc_textField_3.fill = GridBagConstraints.HORIZONTAL;
-			gbc_textField_3.gridx = 2;
-			gbc_textField_3.gridy = 5;
-			contentPanel.add(textField_3, gbc_textField_3);
+			inR = new JTextField();
+			inR.setColumns(10);
+			GridBagConstraints gbc_inR = new GridBagConstraints();
+			gbc_inR.insets = new Insets(0, 0, 5, 0);
+			gbc_inR.fill = GridBagConstraints.HORIZONTAL;
+			gbc_inR.gridx = 2;
+			gbc_inR.gridy = 3;
+			contentPanel.add(inR, gbc_inR);
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -154,20 +116,18 @@ public class DlgDonut extends JDialog {
 			}
 		}
 	}
-
+	
 	
 
-	public Donut getDonut() {
-		return donut;
+	public JTextField getOutR() {
+		return outR;
 	}
 
 
-
-	public void setDonut(Donut donut) {
-		this.donut = donut;
+	public JTextField getInR() {
+		return inR;
 	}
-
-
+	
 
 	public boolean isCommited() {
 		return commited;

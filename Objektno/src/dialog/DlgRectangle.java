@@ -22,14 +22,15 @@ import java.awt.event.ActionEvent;
 public class DlgRectangle extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textField_1;
-	private boolean commited;
-	private Rectangle rectangle = new Rectangle();
+	protected JTextField heightField;
+	protected JTextField widthField;
+	protected boolean commited;
 	
 
 	public DlgRectangle() {
 		setBounds(100, 100, 450, 280);
+		setModal(true);
+		setTitle("Unos dimenzija");
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -58,14 +59,14 @@ public class DlgRectangle extends JDialog {
 			contentPanel.add(height, gbc_height);
 		}
 		{
-			textField = new JTextField();
-			GridBagConstraints gbc_textField = new GridBagConstraints();
-			gbc_textField.insets = new Insets(0, 0, 5, 0);
-			gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-			gbc_textField.gridx = 2;
-			gbc_textField.gridy = 2;
-			contentPanel.add(textField, gbc_textField);
-			textField.setColumns(10);
+			heightField = new JTextField();
+			GridBagConstraints gbc_heightField = new GridBagConstraints();
+			gbc_heightField.insets = new Insets(0, 0, 5, 0);
+			gbc_heightField.fill = GridBagConstraints.HORIZONTAL;
+			gbc_heightField.gridx = 2;
+			gbc_heightField.gridy = 2;
+			contentPanel.add(heightField, gbc_heightField);
+			heightField.setColumns(10);
 		}
 		{
 			JLabel width = new JLabel("Width (px):");
@@ -77,13 +78,13 @@ public class DlgRectangle extends JDialog {
 			contentPanel.add(width, gbc_width);
 		}
 		{
-			textField_1 = new JTextField();
-			textField_1.setColumns(10);
-			GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-			gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
-			gbc_textField_1.gridx = 2;
-			gbc_textField_1.gridy = 3;
-			contentPanel.add(textField_1, gbc_textField_1);
+			widthField = new JTextField();
+			widthField.setColumns(10);
+			GridBagConstraints gbc_widthField = new GridBagConstraints();
+			gbc_widthField.fill = GridBagConstraints.HORIZONTAL;
+			gbc_widthField.gridx = 2;
+			gbc_widthField.gridy = 3;
+			contentPanel.add(widthField, gbc_widthField);
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -114,32 +115,22 @@ public class DlgRectangle extends JDialog {
 			}
 		}
 	}
-	
-	
-	
-	public Rectangle getRectangle() {
-		return rectangle;
+
+	public JTextField getHeightField() {
+		return heightField;
 	}
 
-
-
-	public void setRectangle(Rectangle r) {
-		this.rectangle = r;
+	public JTextField getWidthField() {
+		return widthField;
 	}
-
-
 
 	public boolean isCommited() {
 		return commited;
 	}
 
-
-
 	public void setCommited(boolean commited) {
 		this.commited = commited;
 	}
-
-
 
 	public static void main(String[] args) {
 		try {

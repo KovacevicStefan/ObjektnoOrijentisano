@@ -63,6 +63,15 @@ public class Point extends Shape implements Moveable{
 		this.y = this.y + dy;
 	}
 	
+	@Override
+	public int compareTo(Object o) {
+		if(o instanceof Point) {
+			Point temp = (Point)o;
+			return ((int)(this.distance(0, 0) - temp.distance(0, 0))); 
+		}
+		return 0;
+	}
+	
 	public boolean contains(int x, int y) {
 		
 		return this.distance(x, y) <= 2;
