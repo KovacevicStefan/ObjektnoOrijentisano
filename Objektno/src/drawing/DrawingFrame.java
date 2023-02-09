@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -40,7 +41,6 @@ import javax.swing.JColorChooser;
 
 public class DrawingFrame extends JFrame implements ActionListener{
 
-	
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private DrawingPanel panel = new DrawingPanel();
@@ -91,8 +91,9 @@ public class DrawingFrame extends JFrame implements ActionListener{
 	public DrawingFrame() {
 		
 		setTitle("Drawing 1.0");
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 931, 571);
+		setBounds(100, 100, 930, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));

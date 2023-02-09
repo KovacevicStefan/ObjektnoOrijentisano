@@ -31,7 +31,7 @@ public class DlgCircleModify extends JDialog {
 	public DlgCircleModify() {
 		setBounds(100, 100, 406, 236);
 		setModal(true);
-		setTitle("Enter Dimensions");
+		setTitle("Circle Modify");
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);

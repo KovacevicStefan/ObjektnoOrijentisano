@@ -12,6 +12,8 @@ import geometry.Circle;
 
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
@@ -29,7 +31,7 @@ public class DlgCircle extends JDialog {
 	public DlgCircle() {
 		setBounds(100, 100, 406, 236);
 		setModal(true);
-		setTitle("Enter Dimensions");
+		setTitle("Circle");
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -75,8 +77,8 @@ public class DlgCircle extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						setCommited(true);
-						dispose();
+							setCommited(true);
+							dispose();
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -96,25 +98,18 @@ public class DlgCircle extends JDialog {
 			}
 		}
 	}
-	
-	
 
 	public JTextField getRadius() {
 		return radius;
 	}
 
-
 	public boolean isCommited() {
 		return commited;
 	}
 
-
-
 	public void setCommited(boolean commited) {
 		this.commited = commited;
 	}
-
-
 
 	public static void main(String[] args) {
 		try {
