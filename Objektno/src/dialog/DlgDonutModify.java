@@ -19,18 +19,20 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class DlgDonut extends JDialog {
+public class DlgDonutModify extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField outR;
 	private JTextField inR;
 	private boolean commited;
+	private JTextField fieldCenterX;
+	private JTextField fieldCenterY;
 	
 
-	public DlgDonut() {
+	public DlgDonutModify() {
 		setBounds(100, 100, 450, 280);
 		setModal(true);
-		setTitle("Unos dimenzija");
+		setTitle("Donut Modify");
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -41,7 +43,7 @@ public class DlgDonut extends JDialog {
 		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPanel.setLayout(gbl_contentPanel);
 		{
-			JLabel lblDonut = new JLabel("Donut");
+			JLabel lblDonut = new JLabel("Donut Modify");
 			lblDonut.setFont(new Font("Tahoma", Font.PLAIN, 17));
 			GridBagConstraints gbc_lblDonut = new GridBagConstraints();
 			gbc_lblDonut.insets = new Insets(0, 0, 5, 0);
@@ -88,6 +90,43 @@ public class DlgDonut extends JDialog {
 			contentPanel.add(inR, gbc_inR);
 		}
 		{
+			JLabel lblCenterX = new JLabel("Center X (px):");
+			GridBagConstraints gbc_lblCenterX = new GridBagConstraints();
+			gbc_lblCenterX.anchor = GridBagConstraints.EAST;
+			gbc_lblCenterX.insets = new Insets(0, 0, 5, 5);
+			gbc_lblCenterX.gridx = 1;
+			gbc_lblCenterX.gridy = 4;
+			contentPanel.add(lblCenterX, gbc_lblCenterX);
+		}
+		{
+			fieldCenterX = new JTextField();
+			fieldCenterX.setColumns(10);
+			GridBagConstraints gbc_fieldCenterX = new GridBagConstraints();
+			gbc_fieldCenterX.insets = new Insets(0, 0, 5, 0);
+			gbc_fieldCenterX.fill = GridBagConstraints.HORIZONTAL;
+			gbc_fieldCenterX.gridx = 2;
+			gbc_fieldCenterX.gridy = 4;
+			contentPanel.add(fieldCenterX, gbc_fieldCenterX);
+		}
+		{
+			JLabel lblCenterYpx = new JLabel("Center Y (px):");
+			GridBagConstraints gbc_lblCenterYpx = new GridBagConstraints();
+			gbc_lblCenterYpx.anchor = GridBagConstraints.EAST;
+			gbc_lblCenterYpx.insets = new Insets(0, 0, 0, 5);
+			gbc_lblCenterYpx.gridx = 1;
+			gbc_lblCenterYpx.gridy = 5;
+			contentPanel.add(lblCenterYpx, gbc_lblCenterYpx);
+		}
+		{
+			fieldCenterY = new JTextField();
+			fieldCenterY.setColumns(10);
+			GridBagConstraints gbc_fieldCenterY = new GridBagConstraints();
+			gbc_fieldCenterY.fill = GridBagConstraints.HORIZONTAL;
+			gbc_fieldCenterY.gridx = 2;
+			gbc_fieldCenterY.gridy = 5;
+			contentPanel.add(fieldCenterY, gbc_fieldCenterY);
+		}
+		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
@@ -132,22 +171,26 @@ public class DlgDonut extends JDialog {
 	public boolean isCommited() {
 		return commited;
 	}
-
-
-
+	
 	public void setCommited(boolean commited) {
 		this.commited = commited;
 	}
 
-
+	public JTextField getFieldCenterX() {
+		return fieldCenterX;
+	}
+	public JTextField getFieldCenterY() {
+		return fieldCenterY;
+	}
 
 	public static void main(String[] args) {
 		try {
-			DlgDonut dialog = new DlgDonut();
+			DlgDonutModify dialog = new DlgDonutModify();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+
 }

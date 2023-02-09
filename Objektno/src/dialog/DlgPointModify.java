@@ -19,17 +19,19 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class DlgPoint extends JDialog {
+public class DlgPointModify extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField xField;
+	private JTextField yField;
 	private boolean commited;
 	private Point point;
 	
 
-	public DlgPoint() {
+	public DlgPointModify() {
 		setBounds(100, 100, 450, 280);
+		setModal(true);
+		setTitle("Point Modify");
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -40,7 +42,7 @@ public class DlgPoint extends JDialog {
 		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPanel.setLayout(gbl_contentPanel);
 		{
-			JLabel lblPoint = new JLabel("Point");
+			JLabel lblPoint = new JLabel("Point Modify");
 			lblPoint.setFont(new Font("Tahoma", Font.PLAIN, 17));
 			GridBagConstraints gbc_lblPoint = new GridBagConstraints();
 			gbc_lblPoint.insets = new Insets(0, 0, 5, 0);
@@ -54,18 +56,18 @@ public class DlgPoint extends JDialog {
 			gbc_x.anchor = GridBagConstraints.EAST;
 			gbc_x.insets = new Insets(0, 0, 5, 5);
 			gbc_x.gridx = 1;
-			gbc_x.gridy = 2;
+			gbc_x.gridy = 1;
 			contentPanel.add(x, gbc_x);
 		}
 		{
-			textField = new JTextField();
-			GridBagConstraints gbc_textField = new GridBagConstraints();
-			gbc_textField.insets = new Insets(0, 0, 5, 0);
-			gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-			gbc_textField.gridx = 2;
-			gbc_textField.gridy = 2;
-			contentPanel.add(textField, gbc_textField);
-			textField.setColumns(10);
+			xField = new JTextField();
+			GridBagConstraints gbc_xField = new GridBagConstraints();
+			gbc_xField.insets = new Insets(0, 0, 5, 0);
+			gbc_xField.fill = GridBagConstraints.HORIZONTAL;
+			gbc_xField.gridx = 2;
+			gbc_xField.gridy = 1;
+			contentPanel.add(xField, gbc_xField);
+			xField.setColumns(10);
 		}
 		{
 			JLabel y = new JLabel("Y (px):");
@@ -73,18 +75,18 @@ public class DlgPoint extends JDialog {
 			gbc_y.anchor = GridBagConstraints.EAST;
 			gbc_y.insets = new Insets(0, 0, 5, 5);
 			gbc_y.gridx = 1;
-			gbc_y.gridy = 3;
+			gbc_y.gridy = 2;
 			contentPanel.add(y, gbc_y);
 		}
 		{
-			textField_1 = new JTextField();
-			textField_1.setColumns(10);
-			GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-			gbc_textField_1.insets = new Insets(0, 0, 5, 0);
-			gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
-			gbc_textField_1.gridx = 2;
-			gbc_textField_1.gridy = 3;
-			contentPanel.add(textField_1, gbc_textField_1);
+			yField = new JTextField();
+			yField.setColumns(10);
+			GridBagConstraints gbc_yField = new GridBagConstraints();
+			gbc_yField.insets = new Insets(0, 0, 5, 0);
+			gbc_yField.fill = GridBagConstraints.HORIZONTAL;
+			gbc_yField.gridx = 2;
+			gbc_yField.gridy = 2;
+			contentPanel.add(yField, gbc_yField);
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -115,6 +117,20 @@ public class DlgPoint extends JDialog {
 			}
 		}
 	}
+	
+	
+
+	public JTextField getxField() {
+		return xField;
+	}
+
+
+
+	public JTextField getyField() {
+		return yField;
+	}
+
+
 
 	public Point getPoint() {
 		return point;
@@ -142,7 +158,7 @@ public class DlgPoint extends JDialog {
 
 	public static void main(String[] args) {
 		try {
-			DlgPoint dialog = new DlgPoint();
+			DlgPointModify dialog = new DlgPointModify();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {

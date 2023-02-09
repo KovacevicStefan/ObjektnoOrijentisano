@@ -37,11 +37,12 @@ public class DrawingPanel extends JPanel{
 			s.draw(g);
 			}
 			else {
+				g.setColor(s.getC());
 				s.draw(g);
 			}
 		}
 	}
-		
+
 	public Shape getSelected() {
 		return selected;
 	

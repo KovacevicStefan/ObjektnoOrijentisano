@@ -10,15 +10,15 @@ public class Line extends Shape{
 		
 	}
 
-	public Line(Point pb, Point db) {
-		this.startPoint = pb;
-		this.endPoint = db;
+	public Line(Point sp, Point ep) {
+		this.startPoint = sp;
+		this.endPoint = ep;
 	}
 	
-	public Line(Point pb, Point db, boolean selected) {
+	public Line(Point sp, Point ep, boolean selected) {
 		
-		this.startPoint = pb;
-		this.endPoint = db;
+		this.startPoint = sp;
+		this.endPoint = ep;
 		this.selected = selected; 
 	}
 	
@@ -31,8 +31,8 @@ public class Line extends Shape{
 	public boolean equals(Object obj) {
 		if(obj instanceof Line) {
 			Line temp = (Line)obj;
-			if(startPoint.equals(temp.getStartPoint()) && endPoint.equals(temp.getEndPoint())) {
-				
+			if(this.startPoint.equals(temp.getStartPoint()) && this.endPoint.equals(temp.getEndPoint())) {
+				return true;
 			}
 		}
 		return false;
@@ -54,13 +54,6 @@ public class Line extends Shape{
 		this.endPoint.moveOn(this.endPoint.getX() + dx, this.endPoint.getY() + dy);
 	}	
 	
-	public double length() {
-		int dx = this.startPoint.getX() - this.endPoint.getX();
-		int dy = this.endPoint.getY() - this.endPoint.getY();
-		double length = Math.sqrt(dx * dx + dy * dy);
-		return length;
-	}
-	
 	@Override
 	public int compareTo(Object o) {
 		if(o instanceof Line) {
@@ -71,20 +64,24 @@ public class Line extends Shape{
 	}
 	
 	public double distance(Point p) {
-		double distAB = Math.sqrt((getStartPoint().getX() - endPoint.getX()) * (startPoint.getX() - endPoint.getX())
-		+ (startPoint.getY() - endPoint.getY()) + (startPoint.getY() - endPoint.getY()));
-		double distAC = Math.sqrt((startPoint.getX() - p.getX()) * (startPoint.getX() - p.getX()) + (endPoint.getY() - p.getY()));
-		double distBC = Math.sqrt((endPoint.getX() - p.getX()) + (endPoint.getX() - p.getX()) + (endPoint.getY() - p.getY()) * (endPoint.getY() - p.getY()));
+		double distAB = Math.sqrt((getStartPoint().getX() - getEndPoint().getX()) * (getStartPoint().getX() - getEndPoint().getX())
+		+ (getStartPoint().getY() - getEndPoint().getY()) * (getStartPoint().getY() - getEndPoint().getY()));
+		double distAC = Math.sqrt((getStartPoint().getX() - p.getX()) * (getStartPoint().getX() - p.getX()) + (getStartPoint().getY() - p.getY()) * (getStartPoint().getY() - p.getY()));
+		double distBC = Math.sqrt((getEndPoint().getX() - p.getX()) * (getEndPoint().getX() - p.getX()) + (getEndPoint().getY() - p.getY()) * (getEndPoint().getY() - p.getY()));
 		double s = (distAB + distAC + distBC) / 2;
 		return 2 * (Math.sqrt(s * (s - distAB) * (s - distAC) * (s - distBC))) / distAB;
 	}
 	
 	public boolean contains(int x, int y) {
-		Point point = new Point(x,y);
-		double dfltp = this.distance(point);
-		double dfstp = startPoint.distance(point.getX(), point.getY());
-		double dfetp = endPoint.distance(point.getX(), point.getY());
+		Point p = new Point(x,y);
+		double dfltp = this.distance(p);
+		double dfstp = startPoint.distance(p.getX(), p.getY());
+		double dfetp = endPoint.distance(p.getX(), p.getY());
 		return (dfltp < 5 && dfstp < length() && dfetp < length());
+	}
+	
+	public double length() {
+		return startPoint.distance(endPoint.getX(), endPoint.getY());
 	}
 	
 	public void draw(Graphics g) {

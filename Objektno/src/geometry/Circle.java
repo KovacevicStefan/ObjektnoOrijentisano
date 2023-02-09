@@ -89,12 +89,8 @@ public class Circle extends Shape{
 		public int getR() {
 			return r;
 		}
-		public void setR(int r) throws Exception {
-			if(r >= 0) {
+		public void setR(int r){
 				this.r = r;
-			}else {
-				throw new Exception("Vrednost poluprecnika ne moze biti negativan broj.");
-			}
 		}
 	
 }

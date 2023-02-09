@@ -19,18 +19,20 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class DlgRectangle extends JDialog {
+public class DlgRectangleModify extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	protected JTextField heightField;
 	protected JTextField widthField;
+	protected JTextField upperLeftXField;
+	protected JTextField upperLeftYField;
 	protected boolean commited;
 	
 
-	public DlgRectangle() {
+	public DlgRectangleModify() {
 		setBounds(100, 100, 450, 280);
 		setModal(true);
-		setTitle("Rectangle");
+		setTitle("Rectangle Modify");
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -41,7 +43,7 @@ public class DlgRectangle extends JDialog {
 		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPanel.setLayout(gbl_contentPanel);
 		{
-			JLabel lblRectangle = new JLabel("Rectangle");
+			JLabel lblRectangle = new JLabel("Rectangle Modify");
 			lblRectangle.setFont(new Font("Tahoma", Font.PLAIN, 17));
 			GridBagConstraints gbc_lblRectangle = new GridBagConstraints();
 			gbc_lblRectangle.insets = new Insets(0, 0, 5, 0);
@@ -88,6 +90,43 @@ public class DlgRectangle extends JDialog {
 			contentPanel.add(widthField, gbc_widthField);
 		}
 		{
+			JLabel lblUpperleftXpx = new JLabel("UpperLeft X (px):");
+			GridBagConstraints gbc_lblUpperleftXpx = new GridBagConstraints();
+			gbc_lblUpperleftXpx.anchor = GridBagConstraints.EAST;
+			gbc_lblUpperleftXpx.insets = new Insets(0, 0, 5, 5);
+			gbc_lblUpperleftXpx.gridx = 1;
+			gbc_lblUpperleftXpx.gridy = 4;
+			contentPanel.add(lblUpperleftXpx, gbc_lblUpperleftXpx);
+		}
+		{
+			upperLeftXField = new JTextField();
+			upperLeftXField.setColumns(10);
+			GridBagConstraints gbc_upperLeftXField = new GridBagConstraints();
+			gbc_upperLeftXField.insets = new Insets(0, 0, 5, 0);
+			gbc_upperLeftXField.fill = GridBagConstraints.HORIZONTAL;
+			gbc_upperLeftXField.gridx = 2;
+			gbc_upperLeftXField.gridy = 4;
+			contentPanel.add(upperLeftXField, gbc_upperLeftXField);
+		}
+		{
+			JLabel lblUpperleftYpx = new JLabel("UpperLeft Y (px):");
+			GridBagConstraints gbc_lblUpperleftYpx = new GridBagConstraints();
+			gbc_lblUpperleftYpx.anchor = GridBagConstraints.EAST;
+			gbc_lblUpperleftYpx.insets = new Insets(0, 0, 0, 5);
+			gbc_lblUpperleftYpx.gridx = 1;
+			gbc_lblUpperleftYpx.gridy = 5;
+			contentPanel.add(lblUpperleftYpx, gbc_lblUpperleftYpx);
+		}
+		{
+			upperLeftYField = new JTextField();
+			upperLeftYField.setColumns(10);
+			GridBagConstraints gbc_upperLeftYField = new GridBagConstraints();
+			gbc_upperLeftYField.fill = GridBagConstraints.HORIZONTAL;
+			gbc_upperLeftYField.gridx = 2;
+			gbc_upperLeftYField.gridy = 5;
+			contentPanel.add(upperLeftYField, gbc_upperLeftYField);
+		}
+		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
@@ -132,10 +171,17 @@ public class DlgRectangle extends JDialog {
 	public void setCommited(boolean commited) {
 		this.commited = commited;
 	}
+	
+	public JTextField getUpperLeftXField() {
+		return upperLeftXField;
+	}
+	public JTextField getUpperLeftYField() {
+		return upperLeftYField;
+	}
 
 	public static void main(String[] args) {
 		try {
-			DlgRectangle dialog = new DlgRectangle();
+			DlgRectangleModify dialog = new DlgRectangleModify();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -143,5 +189,4 @@ public class DlgRectangle extends JDialog {
 		}
 	}
 
-	
 }
