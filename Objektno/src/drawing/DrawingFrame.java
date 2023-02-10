@@ -8,7 +8,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
-import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -37,17 +36,23 @@ import javax.swing.JOptionPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JColorChooser;
+import javax.swing.border.LineBorder;
 
 
 public class DrawingFrame extends JFrame implements ActionListener{
 
+	private int counter = 0;
+	private boolean selected;
+	private Point startPoint, endPoint;
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private DrawingPanel panel = new DrawingPanel();
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private ArrayList<Shape> slctd = new ArrayList<Shape>();
+	private DrawingPanel panel = new DrawingPanel();
+	private JPanel contentPane;
 	private JLabel lbl;
 	private Color clr;
+	private JToggleButton color;
+	private JToggleButton clrbtn;
 	private JToggleButton select;
 	private JToggleButton modify;
 	private JToggleButton erase;
@@ -64,9 +69,6 @@ public class DrawingFrame extends JFrame implements ActionListener{
 	private DlgRectangleModify dlgRectangleM;
 	private DlgCircleModify dlgCircleM;
 	private DlgDonutModify dlgDonutM;
-	private Point startPoint, endPoint;
-	private boolean selected;
-	private int brojac = 0;
 	private MouseListener ml = new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent e) {
@@ -85,15 +87,14 @@ public class DrawingFrame extends JFrame implements ActionListener{
 			}
 		}
 	};
-	private JToggleButton color;
-	private JToggleButton clrbtn;
+
 
 	public DrawingFrame() {
 		
 		setTitle("Drawing 1.0");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 930, 600);
+		setBounds(100, 100, 928, 556);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -102,6 +103,7 @@ public class DrawingFrame extends JFrame implements ActionListener{
 		JToolBar toolBar = new JToolBar();
 		toolBar.setBounds(10, 234, 87, 16);
 		contentPane.add(toolBar, BorderLayout.SOUTH);
+		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.addMouseListener(ml);
 		
@@ -190,7 +192,7 @@ public class DrawingFrame extends JFrame implements ActionListener{
 						repaint();
 					}
 				}else if(s instanceof Circle) {
-					if(s instanceof Circle && s.getClass() != Circle.class) {
+					if(s.getClass() != Circle.class) {
 						if(!s.isSelected()) {
 							s.setSelected(true);
 							slctd.add(s);
@@ -217,9 +219,9 @@ public class DrawingFrame extends JFrame implements ActionListener{
 	}
 	protected void modify(ActionEvent e) {
 		if(panel.getShapes().isEmpty() || slctd.isEmpty()) {
-			JOptionPane.showMessageDialog(null, "There is no selected object to modify!", "ERROR", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Please select object to modify!", "ERROR", JOptionPane.ERROR_MESSAGE);
 		}else if(slctd.size() > 1) {
-			JOptionPane.showMessageDialog(null, "You can modify only one object!", "ERROR", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "You can modify only one selected object!", "ERROR", JOptionPane.ERROR_MESSAGE);
 		}else if(slctd.size() == 1) {
 			for(Shape s : panel.getShapes()) {
 				if(s instanceof Point) {
@@ -288,7 +290,7 @@ public class DrawingFrame extends JFrame implements ActionListener{
 					}
 				}else if(s instanceof Circle) {
 					if(s.isSelected()) {
-						if(s instanceof Circle && s.getClass() != Circle.class) {
+						if(s.getClass() != Circle.class) {
 								Donut temp = (Donut) s;
 								Donut d = new Donut();
 								
@@ -349,7 +351,7 @@ public class DrawingFrame extends JFrame implements ActionListener{
 		}
 	}
 	protected void color(ActionEvent e) {
-		clr = JColorChooser.showDialog(null, "Choose color",Color.RED);
+		clr = JColorChooser.showDialog(null, "Choose color",Color.BLACK);
 		clrbtn.setBackground(clr);
 		for(Shape s : slctd) {
 			if(s instanceof Point){
@@ -365,13 +367,15 @@ public class DrawingFrame extends JFrame implements ActionListener{
 					s.setC(clr);
 					repaint();
 			}else if(s instanceof Circle) {
+				if(s.getClass() != Circle.class) {
 					repaint();
 					s.setC(clr);
 					repaint();
-			}else if(s instanceof Donut) {
+				}else {
 					repaint();
 					s.setC(clr);
 					repaint();
+				}		
 			}
 		}
 	}
@@ -382,20 +386,23 @@ public class DrawingFrame extends JFrame implements ActionListener{
 		repaint();
 	}
 	protected void line(MouseEvent e) {
-		brojac++;
-		if(brojac == 1) {
-			startPoint = new Point(e.getX(),e.getY());
-			panel.getShapes().add(startPoint);
-			startPoint.setC(clr);
-			repaint();
-		}else if(brojac == 2) {
-			endPoint = new Point(e.getX(),e.getY());
-			Line l = new Line(startPoint, endPoint,selected);
-			panel.getShapes().add(l);
-			panel.getShapes().remove(startPoint);
-			l.setC(clr);
-			repaint();
-			brojac = 0;
+		counter++;
+		switch(counter) {
+			case 1:
+				startPoint = new Point(e.getX(),e.getY());
+				panel.getShapes().add(startPoint);
+				startPoint.setC(clr);
+				repaint();
+				break;
+			case 2:
+				endPoint = new Point(e.getX(),e.getY());
+				Line l = new Line(startPoint,endPoint,selected);
+				panel.getShapes().add(l);
+				panel.getShapes().remove(startPoint);
+				l.setC(clr);
+				repaint();
+				counter = 0;
+				break;
 		}
 	}
 	protected void rectangle(MouseEvent e) {

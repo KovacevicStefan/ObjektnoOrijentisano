@@ -8,10 +8,10 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -20,6 +20,7 @@ import geometry.Point;
 
 public class DlgLineModify extends JDialog {
 
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField spxField;
 	private JTextField spyField;
@@ -135,8 +136,17 @@ public class DlgLineModify extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						setCommited(true);
-						dispose();
+						if(!epxField.getText().isEmpty() && !epyField.getText().isEmpty() && !spxField.getText().isEmpty() && !spyField.getText().isEmpty()) {
+							if(epxField.getText().matches("^[1-9]\\d*$") && epyField.getText().matches("^[1-9]\\d*$") && spxField.getText().matches("^[1-9]\\d*$") 
+								&& spyField.getText().matches("^[1-9]\\d*$")) {
+								setCommited(true);
+								dispose();
+							}else {
+								JOptionPane.showMessageDialog(null, "All values have to be positive!", "ERROR", JOptionPane.ERROR_MESSAGE);
+							}
+						}else {
+							JOptionPane.showMessageDialog(null, "You have to enter all values!", "ERROR", JOptionPane.ERROR_MESSAGE);
+						}
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -193,5 +203,15 @@ public class DlgLineModify extends JDialog {
 	}
 	public JTextField getEpyField() {
 		return epyField;
+	}
+	
+	public static void main(String[] args) {
+		try {
+			DlgLineModify dialog = new DlgLineModify();
+			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

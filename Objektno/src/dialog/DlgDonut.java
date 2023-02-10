@@ -8,10 +8,10 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import geometry.Donut;
-
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
@@ -21,6 +21,7 @@ import java.awt.event.ActionEvent;
 
 public class DlgDonut extends JDialog {
 
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField outR;
 	private JTextField inR;
@@ -95,8 +96,20 @@ public class DlgDonut extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						setCommited(true);
-						dispose();
+						if(!inR.getText().isEmpty() && !outR.getText().isEmpty()) {
+							if(inR.getText().matches("^[1-9]\\d*$") && outR.getText().matches("^[1-9]\\d*$")) {
+								if(Integer.parseInt(inR.getText()) < Integer.parseInt(outR.getText())) {
+									setCommited(true);
+									dispose();
+								}else {
+									JOptionPane.showMessageDialog(null, "Outter Radius have to be bigger than Inner Radius!", "ERROR", JOptionPane.ERROR_MESSAGE);
+								}
+							}else {
+								JOptionPane.showMessageDialog(null, "All values have to be positive!", "ERROR", JOptionPane.ERROR_MESSAGE);
+							}
+						}else {
+							JOptionPane.showMessageDialog(null, "You have to enter all values!", "ERROR", JOptionPane.ERROR_MESSAGE);
+						}
 					}
 				});
 				okButton.setActionCommand("OK");

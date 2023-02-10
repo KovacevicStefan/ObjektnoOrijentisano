@@ -8,7 +8,6 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import geometry.Circle;
 
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -23,11 +22,13 @@ import java.awt.event.ActionEvent;
 
 public class DlgCircle extends JDialog {
 
+	
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField radius;
 	private boolean commited;
 	
-
+	
 	public DlgCircle() {
 		setBounds(100, 100, 406, 236);
 		setModal(true);
@@ -77,8 +78,16 @@ public class DlgCircle extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-							setCommited(true);
-							dispose();
+						if(!radius.getText().isEmpty()) {
+							if(radius.getText().matches("^[1-9]\\d*$")) {
+								setCommited(true);
+								dispose();
+							}else {
+								JOptionPane.showMessageDialog(null, "All values have to be positive!", "ERROR", JOptionPane.ERROR_MESSAGE);
+							}
+						}else {
+							JOptionPane.showMessageDialog(null, "You have to enter all values!", "ERROR", JOptionPane.ERROR_MESSAGE);
+						}
 					}
 				});
 				okButton.setActionCommand("OK");

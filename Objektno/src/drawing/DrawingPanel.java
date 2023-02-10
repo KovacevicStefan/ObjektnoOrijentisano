@@ -1,20 +1,7 @@
 package drawing;
 import java.awt.Graphics;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Iterator;
-
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import dialog.DlgCircle;
-import dialog.DlgDonut;
-import dialog.DlgRectangle;
-import geometry.Circle;
-import geometry.Donut;
-import geometry.Line;
-import geometry.Point;
-import geometry.Rectangle;
 import geometry.Shape;
 
 public class DrawingPanel extends JPanel{

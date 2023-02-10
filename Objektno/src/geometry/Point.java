@@ -79,10 +79,10 @@ public class Point extends Shape implements Moveable{
 	}
 	
 	public void draw(Graphics g) {
-		g.drawLine(this.x - 1, this.y, this.x + 1, this.y);
-		g.drawLine(this.x, this.y - 1, this.x, this.y + 1);
+		g.drawLine(this.x - 2, this.y, this.x + 2, this.y);
+		g.drawLine(this.x, this.y - 2, this.x, this.y + 2);
 		if(selected) {
-			g.drawRect(this.x - 3, this.y - 3, 6, 6);
+			g.drawRect(this.x - 4, this.y - 4, 8, 8);
 		}
 	}
 	
