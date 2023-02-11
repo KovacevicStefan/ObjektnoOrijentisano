@@ -52,7 +52,6 @@ public class StackSort extends JFrame implements ActionListener{
 	private JToggleButton sort;
 	private JList<String> list;
 	private JLabel recStack;
-
 	
 	public StackSort() {
 		
