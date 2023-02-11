@@ -53,6 +53,7 @@ public class StackSort extends JFrame implements ActionListener{
 	private JList<String> list;
 	private JLabel recStack;
 	
+	
 	public StackSort() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
