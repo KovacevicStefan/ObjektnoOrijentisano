@@ -102,6 +102,7 @@ public class DrawingFrame extends JFrame implements ActionListener{
 		
 		JToolBar toolBar = new JToolBar();
 		toolBar.setBounds(10, 234, 87, 16);
+		toolBar.setEnabled(false);
 		contentPane.add(toolBar, BorderLayout.SOUTH);
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		contentPane.add(panel, BorderLayout.CENTER);
@@ -490,7 +491,5 @@ public class DrawingFrame extends JFrame implements ActionListener{
 			}
 		});
 	}
-
-	
 }
 

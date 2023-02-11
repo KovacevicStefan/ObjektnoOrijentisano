@@ -21,6 +21,8 @@ public class DlgRectangleModify extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
+	protected JLabel lblRectangle;
+	protected JButton okButton;
 	protected JTextField heightField;
 	protected JTextField widthField;
 	protected JTextField upperLeftXField;
@@ -42,7 +44,7 @@ public class DlgRectangleModify extends JDialog {
 		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPanel.setLayout(gbl_contentPanel);
 		{
-			JLabel lblRectangle = new JLabel("Rectangle Modify");
+			lblRectangle = new JLabel("Rectangle Modify");
 			lblRectangle.setFont(new Font("Tahoma", Font.PLAIN, 17));
 			GridBagConstraints gbc_lblRectangle = new GridBagConstraints();
 			gbc_lblRectangle.insets = new Insets(0, 0, 5, 0);
@@ -130,7 +132,7 @@ public class DlgRectangleModify extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
+				okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if(!heightField.getText().isEmpty() && !widthField.getText().isEmpty() && !upperLeftXField.getText().isEmpty() && !upperLeftYField.getText().isEmpty()) {
@@ -162,6 +164,20 @@ public class DlgRectangleModify extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+	
+	
+
+	public JButton getOkButton() {
+		return okButton;
+	}
+
+	public void setLblRectangle(JLabel lblRectangle) {
+		this.lblRectangle = lblRectangle;
+	}
+	
+	public JLabel getLblRectangle() {
+		return this.lblRectangle;
 	}
 
 	public JTextField getHeightField() {

@@ -15,9 +15,8 @@ public class Test {
 		System.out.println(d.circumference());
 		System.out.println(d.area());
 		
-		Donut d1 = new Donut(new Point(3,5), 7, 4);
-		
-		System.out.println(d.equals(d1));
+		Rectangle r = new Rectangle(new Point(3,5), 50, 50);
+		System.out.println(r.area());
 		
 		
 	}

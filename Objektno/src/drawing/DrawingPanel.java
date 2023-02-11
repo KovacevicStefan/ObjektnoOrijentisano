@@ -20,8 +20,8 @@ public class DrawingPanel extends JPanel{
 		for(Shape s: shapes) {
 			if(s.isSelected())
 			{
-			g.setColor(s.getC());
-			s.draw(g);
+				g.setColor(s.getC());
+				s.draw(g);
 			}
 			else {
 				g.setColor(s.getC());
@@ -32,12 +32,9 @@ public class DrawingPanel extends JPanel{
 
 	public Shape getSelected() {
 		return selected;
-	
 	}
 	
 	public ArrayList<Shape> getShapes(){
 		return shapes;
 	}
-	
-	
 }
